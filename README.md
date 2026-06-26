@@ -1,18 +1,12 @@
-FROM rust:1.75-slim AS builder
+# Infodemic-AI-Core
 
-RUN apt-get update && apt-get install -y \
-    build-essential pkg-config libssl-dev \
-    && rm -rf /var/lib/apt/lists/*
+Infodemic-AI-Core is a social deduction and strategy game powered by the Virtuals Protocol Game Framework. Players act as elite Intelligence Directors to audit, analyze, and contain rapidly evolving conspiracies spreading across global social media.
 
-WORKDIR /usr/src/gitlawb
-COPY . .
-RUN cargo build --release --locked
+## Tech
 
-FROM debian:bookworm-slim
+- Virtuals Protocol Game Framework
+- Docker deployment ready
 
-RUN apt-get update && apt-get install -y \
-    ca-certificates libssl3 \
-    && rm -rf /var/lib/apt/lists/*
+## Run locally / Deploy
 
-COPY --from=builder /usr/src/gitlawb/target/release/gitlawb-node /usr/local/bin/gitlawb-node
-CMD ["gitlawb-node"]
+See `Dockerfile` in repo root.
