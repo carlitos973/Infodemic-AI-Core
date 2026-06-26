@@ -3,9 +3,8 @@ FROM rust:1.78-slim AS builder
 WORKDIR /usr/src
 RUN apt-get update && apt-get install -y git pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://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@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
-
-RUN git clone https://YOUR_TOKEN_HERE@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
+# Clones the repository using your access token directly
+RUN git clone https://x-access-token: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@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
 
 WORKDIR /usr/src/app
 RUN cargo build --release --locked
