@@ -3,8 +3,8 @@ FROM rust:1.78-slim AS builder
 WORKDIR /usr/src
 RUN apt-get update && apt-get install -y git pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
 
-# The :@ right after the token satisfies the password requirement instantly
-RUN git clone https://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:@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
+# Clones the repository using your fresh working access token
+RUN git clone https://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:@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
 
 WORKDIR /usr/src/app
 RUN cargo build --release --locked
