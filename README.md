@@ -1,2 +1,9 @@
-# Infodemic-AI-Core
-Infodemic AI Core is a dynamic social-deduction and tactical strategy game powered by Virtuals Protocol Game Framework. In a world flooded with hyper-viral digital content, players take on the role of an elite Intelligence Director tasked with auditing, analyzing, and containing a rapidly morphing web of global social media conspiracies.
+FROM rust:1.75-slim as builder
+WORKDIR /usr/src/gitlawb
+COPY . .
+RUN cargo build --release
+
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /usr/src/gitlawb/target/release/gitlawb-node /usr/local/bin/gitlawb-node
+CMD ["gitlawb-node"]
