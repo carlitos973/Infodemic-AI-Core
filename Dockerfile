@@ -3,7 +3,8 @@ FROM rust:1.78-slim AS builder
 WORKDIR /usr/src
 RUN apt-get update && apt-get install -y git pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
 
-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
+RUN git clone https://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@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
+
 RUN git clone https://YOUR_TOKEN_HERE@github.com/Virtuals-Protocol/Infodemic-AI-Core.git app
 
 WORKDIR /usr/src/app
