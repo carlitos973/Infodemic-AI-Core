@@ -1,0 +1,8 @@
+[package]
+name = "infodemic-ai-core"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "infodemic-ai-core"
+path = "src/main.rs"
