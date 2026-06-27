@@ -1,18 +1,14 @@
 # syntax=docker/dockerfile:1.4
 FROM rust:1.78-slim AS builder
 
-WORKDIR /usr/src
+WORKDIR /usr/src/app
 
 RUN apt-get update && \
-    apt-get install -y git pkg-config libssl-dev && \
+    apt-get install -y pkg-config libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN --mount=type=secret,id=GITHUB_TOKEN \
-    git clone \
-    https://x-access-token:$(cat /run/secrets/GITHUB_TOKEN)@github.com/carlitos973/Infodemic-AI-Core.git \
-    app
+COPY . .
 
-WORKDIR /usr/src/app
 RUN cargo build --release
 
 FROM debian:bookworm-slim AS runtime
