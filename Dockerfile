@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN --mount=type=secret,id=GITHUB_TOKEN \
     git clone \
-    https://x-access-token:$(cat /run/secrets/GITHUB_TOKEN)@github.com/Virtuals-Protocol/Infodemic-AI-Core.git \
+    https://x-access-token:$(cat /run/secrets/GITHUB_TOKEN)@github.com/carlitos973/Infodemic-AI-Core.git \
     app
 
 WORKDIR /usr/src/app
