@@ -1,14 +1,15 @@
+# syntax=docker/dockerfile:1.4
 FROM rust:1.78-slim AS builder
 
-ARG GITHUB_TOKEN
 WORKDIR /usr/src
 
 RUN apt-get update && \
     apt-get install -y git pkg-config libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone \
-    https://x-access-token:${GITHUB_TOKEN}@github.com/carlitos973/Infodemic-AI-Core.git \
+RUN --mount=type=secret,id=GITHUB_TOKEN \
+    git clone \
+    https://x-access-token:$(cat /run/secrets/GITHUB_TOKEN)@github.com/Virtuals-Protocol/Infodemic-AI-Core.git \
     app
 
 WORKDIR /usr/src/app
