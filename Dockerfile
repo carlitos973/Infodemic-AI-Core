@@ -8,7 +8,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone \
-    https://x-access-token:${GITHUB_TOKEN}@github.com/carlitos973/Infodemic-AI-Core.git \
+    https://x-access-token:${GITHUB_TOKEN}@github.com/Virtuals-Protocol/Infodemic-AI-Core.git \
     app
 
 WORKDIR /usr/src/app
